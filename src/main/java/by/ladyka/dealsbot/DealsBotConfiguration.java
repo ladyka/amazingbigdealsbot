@@ -1,9 +1,11 @@
 package by.ladyka.dealsbot;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
@@ -26,8 +28,12 @@ public class DealsBotConfiguration extends TelegramLongPollingBot {
         return botToken;
     }
 
+    @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
-        dealsBotService.onUpdateReceived(update);
+        BotApiMethod method = dealsBotService.onUpdateReceived(update);
+        if (method != null) {
+            sendApiMethod(method);
+        }
     }
 }
