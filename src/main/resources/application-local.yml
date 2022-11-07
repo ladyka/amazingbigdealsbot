@@ -1,0 +1,15 @@
+database:
+  host: localhost
+  port: 5432
+  name: postgres
+  schema: amazingbigdealsbot
+  username: postgres
+  password: postgres
+
+debug: true
+
+logging:
+  level:
+    root: info
+    org.springframework: debug
+    by.ladyka: debug

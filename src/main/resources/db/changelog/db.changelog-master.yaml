@@ -1,0 +1,9 @@
+databaseChangeLog:
+- property:
+    name: now
+    value: cast(extract(epoch from current_timestamp) * 1000.0 as bigint)
+- property:
+    name: uuid
+    value: md5(random()::text || clock_timestamp()::text)::uuid
+- include:
+    file: db/changelog/changelog.yaml

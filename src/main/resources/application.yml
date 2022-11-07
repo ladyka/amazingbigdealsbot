@@ -1,0 +1,22 @@
+server:
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types: application/json
+
+spring:
+  application:
+    name: amazingbigdealsbot
+  datasource:
+    name: ${database.name}
+    url: jdbc:postgresql://${database.host}:${database.port}/${database.name}?currentSchema=${database.schema}&ApplicationName=${spring.application.name}
+    username: ${database.username}
+    password: ${database.password}
+    hikari:
+      connection-init-sql: CREATE SCHEMA IF NOT EXISTS ${database.schema};
+
+logging:
+  level:
+    root: info
+    org.springframework: info
+    by.ladyka: info
